@@ -18,7 +18,8 @@
             "mainClass": "com.e.order_sevice.OrderSeviceApplication",
             "projectName": "order_sevice",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=61843 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=order_sevice"
         },
         {
             "type": "java",
@@ -37,6 +38,26 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.e.product_service.ProductServiceApplication",
             "projectName": "product_service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-InventryApplication<inventry>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.e.inventry.InventryApplication",
+            "projectName": "inventry",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-Main<inventry_service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.e.Main",
+            "projectName": "inventry_service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }
