@@ -22,5 +22,5 @@ public class OrderLine {
     private Long id;
     private String skuCode;
     private BigDecimal price;
-    private int quantity;
+    private Integer quantity;
 }

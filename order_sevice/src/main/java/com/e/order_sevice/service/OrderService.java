@@ -13,9 +13,9 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class OrderService {
 
-    private OrderRepo orderRepo;
+    private final OrderRepo orderRepo;
 
-    void placeOrder(OrderedRequest orderRequest) {
+    public void placeOrder(OrderedRequest orderRequest) {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
 
@@ -28,7 +28,6 @@ public class OrderService {
     }
     private OrderLine mapTODto(OrderedListDto od) {
         OrderLine orderLine = new OrderLine();
-        orderLine.setId(od.getId());
         orderLine.setPrice(od.getPrice());
         orderLine.setQuantity(od.getQuantity());
         orderLine.setSkuCode(orderLine.getSkuCode());
