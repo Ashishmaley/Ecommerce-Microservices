@@ -5,8 +5,8 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
-import com.e.inventry.model.Inventry;
-import com.e.inventry.repository.InventryRepo;
+import com.e.inventry.model.Inventory;
+import com.e.inventry.repository.InventoryRepo;
 
 @SpringBootApplication
 public class InventryApplication {
@@ -16,17 +16,17 @@ public class InventryApplication {
 	}
 
 	@Bean
-	public CommandLineRunner loadData(InventryRepo inventryRepo) {
+	public CommandLineRunner loadData(InventoryRepo inventryRepo) {
 		return arg -> {
-			Inventry i1 = new Inventry();
+			Inventory i1 = new Inventory();
 			i1.setSkuCode("iphone 13");
 			i1.setQuantity(100);
 
-			Inventry i2 = new Inventry();
+			Inventory i2 = new Inventory();
 			i2.setSkuCode("iphone 14");
 			i2.setQuantity(10);
 
-			Inventry i3 = new Inventry();
+			Inventory i3 = new Inventory();
 			i3.setSkuCode("iphone15");
 			i3.setQuantity(1);
 			inventryRepo.save(i1);

@@ -12,7 +12,7 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-public class Inventry {
+public class Inventory {
     @Id
     @GeneratedValue(strategy= GenerationType.IDENTITY)
     private Long id;
