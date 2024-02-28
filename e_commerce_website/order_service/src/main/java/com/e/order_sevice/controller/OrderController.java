@@ -19,9 +19,9 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 @RequiredArgsConstructor
 @RequestMapping("/api/order")
 public class OrderController {
-    
+
     private final OrderService oService;
-    
+
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public String placeOrder(@RequestBody OrderedRequest orderedRequest) {
@@ -31,7 +31,7 @@ public class OrderController {
 
     // @GetMapping("/getOrder")
     // public String getMethodName(@RequestParam String param) {
-    //     return new String();
+    // return new String();
     // }
 
 }

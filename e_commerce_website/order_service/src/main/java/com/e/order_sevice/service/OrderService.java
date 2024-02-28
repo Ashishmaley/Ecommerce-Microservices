@@ -19,7 +19,7 @@ import lombok.RequiredArgsConstructor;
 @Transactional
 public class OrderService {
 
-    private final WebClient webClient;
+    private final WebClient.Builder webClientBuilder;
     private final com.e.order_sevice.repository.OrderRepo orderRepo;
 
     @SuppressWarnings("null")
@@ -37,13 +37,13 @@ public class OrderService {
                 .map(OrderLine::getSkuCode)
                 .collect(Collectors.toList());
 
-        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString("http://localhost:8082")
+        UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString("http://inventory-service")
                 .path("/api/inventory/isInStock")
                 .queryParam("skuCode", skuCodeList.toArray());
 
         System.out.println("Generated URI: " + uriBuilder.build().toUriString());
 
-        InventoryResponse[] inventoryResponses = webClient.get()
+        InventoryResponse[] inventoryResponses = webClientBuilder.build().get()
                 .uri(uriBuilder::build)
                 .retrieve()
                 .bodyToMono(InventoryResponse[].class)
