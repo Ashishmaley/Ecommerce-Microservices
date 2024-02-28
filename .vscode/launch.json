@@ -2,13 +2,25 @@
     "configurations": [
         {
             "type": "java",
-            "name": "Spring Boot-OrderSeviceApplication<order_service>",
+            "name": "Spring Boot-ProductServiceApplication<product_service>",
             "request": "launch",
             "cwd": "${workspaceFolder}",
-            "mainClass": "com.e.order_sevice.OrderSeviceApplication",
-            "projectName": "order_service",
+            "mainClass": "com.e.product_service.ProductServiceApplication",
+            "projectName": "product_service",
             "args": "",
-            "envFile": "${workspaceFolder}/.env"
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62530 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=product_service"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-DiscoveryService<discovery_service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.e.discoveryservice.DiscoveryService",
+            "projectName": "discovery_service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env",
+            "vmArgs": " -Dcom.sun.management.jmxremote -Dcom.sun.management.jmxremote.port=62637 -Dcom.sun.management.jmxremote.authenticate=false -Dcom.sun.management.jmxremote.ssl=false -Dspring.jmx.enabled=true -Djava.rmi.server.hostname=localhost -Dspring.application.admin.enabled=true -Dspring.boot.project.name=discovery_service"
         },
         {
             "type": "java",
@@ -17,6 +29,16 @@
             "cwd": "${workspaceFolder}",
             "mainClass": "com.e.inventry.InventryApplication",
             "projectName": "inventry_service",
+            "args": "",
+            "envFile": "${workspaceFolder}/.env"
+        },
+        {
+            "type": "java",
+            "name": "Spring Boot-OrderSeviceApplication<order_service>",
+            "request": "launch",
+            "cwd": "${workspaceFolder}",
+            "mainClass": "com.e.order_sevice.OrderSeviceApplication",
+            "projectName": "order_service",
             "args": "",
             "envFile": "${workspaceFolder}/.env"
         }

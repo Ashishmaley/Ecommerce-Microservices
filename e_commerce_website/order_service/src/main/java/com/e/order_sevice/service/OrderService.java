@@ -1,21 +1,16 @@
 package com.e.order_sevice.service;
 
-import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
-
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
-import org.springframework.web.reactive.function.client.WebClient.UriSpec;
 import org.springframework.web.util.UriComponentsBuilder;
-
 import com.e.order_sevice.dto.InventoryResponse;
 import com.e.order_sevice.dto.OrderedListDto;
 import com.e.order_sevice.dto.OrderedRequest;
 import com.e.order_sevice.models.Order;
 import com.e.order_sevice.models.OrderLine;
-
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 
