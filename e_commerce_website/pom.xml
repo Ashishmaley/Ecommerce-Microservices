@@ -18,6 +18,7 @@
         <module>product_service</module>
         <module>order_service</module>
         <module>inventry_service</module>
+        <module>api_gateway</module>
     </modules>
 
     <properties>
