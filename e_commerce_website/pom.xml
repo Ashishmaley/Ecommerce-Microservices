@@ -19,6 +19,7 @@
         <module>order_service</module>
         <module>inventry_service</module>
         <module>api_gateway</module>
+        <module>notification_service</module>
     </modules>
 
     <properties>

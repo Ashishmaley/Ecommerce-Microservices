@@ -3,6 +3,9 @@ package com.e.order_sevice.service;
 import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
+
+import com.e.order_sevice.event.OrderPlaceEvent;
+import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import org.springframework.web.util.UriComponentsBuilder;
@@ -21,21 +24,22 @@ public class OrderService {
 
     private final WebClient.Builder webClientBuilder;
     private final com.e.order_sevice.repository.OrderRepo orderRepo;
+    private final KafkaTemplate<String,OrderPlaceEvent> kafkaTemplate;
 
     @SuppressWarnings("null")
-    public void placeOrder(OrderedRequest orderRequest) {
+    public String placeOrder(OrderedRequest orderRequest) {
         Order order = new Order();
         order.setOrderNumber(UUID.randomUUID().toString());
 
         List<OrderLine> orderLineList = orderRequest.getOrderedListDto().stream()
-                .map(this::mapToOrderLine) // Use method reference for simplicity
+                .map(this::mapToOrderLine)
                 .toList();
 
         order.setOrderLineItems(orderLineList);
 
         List<String> skuCodeList = orderLineList.stream()
                 .map(OrderLine::getSkuCode)
-                .collect(Collectors.toList());
+                .toList();
 
         UriComponentsBuilder uriBuilder = UriComponentsBuilder.fromUriString("http://inventory-service")
                 .path("/api/inventory/isInStock")
@@ -49,10 +53,12 @@ public class OrderService {
                 .bodyToMono(InventoryResponse[].class)
                 .block();
 
-        boolean allInStock = (skuCodeList.size() == inventoryResponses.length) ? true : false;
+        boolean allInStock = skuCodeList.size() == inventoryResponses.length;
 
         if (allInStock) {
             orderRepo.save(order);
+            kafkaTemplate.send("order-topic", new OrderPlaceEvent(order.getOrderId()));
+            return "order placed successfully";
         } else {
             throw new IllegalStateException("Product is not available");
         }

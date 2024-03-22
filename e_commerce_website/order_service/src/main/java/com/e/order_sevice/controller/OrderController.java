@@ -25,8 +25,7 @@ public class OrderController {
     @ResponseStatus(HttpStatus.CREATED)
     @PostMapping
     public String placeOrder(@RequestBody OrderedRequest orderedRequest) {
-        oService.placeOrder(orderedRequest);
-        return "order created successfully";
+        return oService.placeOrder(orderedRequest);
     }
 
     // @GetMapping("/getOrder")
